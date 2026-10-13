@@ -7,7 +7,7 @@ import pytest
 from my_list import List
 
 LIST = list
-# LIST = List
+LIST = List
 
 
 def test_create_object_no_args():
