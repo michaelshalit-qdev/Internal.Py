@@ -103,8 +103,3 @@ class List:
         previous.next = new_node
 
         self.length += 1
-
-# talked about iterable -> __iter__() functions, some in memory and some like gen, range not in memory (those are slower but they do not take as much memory).
-# talked about from typing import iterable.
-# add static type to function checks.
-# 
