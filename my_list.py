@@ -1,5 +1,5 @@
 
-from typing import Iterable, Iterator
+from typing import Iterable, Iterator , Generator
 
 
 class Node:
@@ -17,6 +17,7 @@ class List:
         if iteration is not None:
             for value in iteration:
                 self.append(value)
+
 
     def __len__(self) -> int:
         return self.length
@@ -38,7 +39,7 @@ class List:
         for value in iteration:
             self.append(value)
     
-        def _normalize_index(self, index: int, for_insert: bool = False) -> int:
+    def _normalize_index(self, index: int, for_insert: bool = False) -> int:
         # check index type
         if not isinstance(index, int):
             raise TypeError("list indices must be integers")
@@ -114,10 +115,43 @@ class List:
 
         self.length += 1
         
-         #def remove(self, value: ) -> :
-        ## start from first node
-        #current = self._head
-        #previous = None
+
+    def remove(self, value: object) -> None:
+        # start from first node
+        current = self._head
+        previous = None
+
+        while current is not None:
+            # check if value matches
+            if current.value is value:
+                if previous is None:
+                    # remove first node
+                    self._head = current.next
+                else:
+                    # skip current node
+                    previous.next = current.next
+
+                self.length -= 1
+                return
+
+            previous = current
+            current = current.next
+
+        raise ValueError("value not found")
         
-           #while current is not None:
-               
+    # def pop(self, index: int = -1) -> object:
+        # check if list is empty
+        # if self.length == 0:
+            # raise IndexError("pop from empty list")
+          # get index
+        # index = self._normalize_index(index)
+
+        # current = self._head
+        # previous = None
+        # current_index = 0
+
+        # find position
+        # while current_index < index:
+            # previous = current
+            # current = current.next
+            # current_index += 1
