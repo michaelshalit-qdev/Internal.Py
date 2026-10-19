@@ -123,7 +123,7 @@ class List:
 
         while current is not None:
             # check if value matches
-            if current.value is value:
+            if current.value == value:
                 if previous is None:
                     # remove first node
                     self._head = current.next
@@ -139,19 +139,30 @@ class List:
 
         raise ValueError("value not found")
         
-    # def pop(self, index: int = -1) -> object:
-        # check if list is empty
-        # if self.length == 0:
-            # raise IndexError("pop from empty list")
-          # get index
-        # index = self._normalize_index(index)
+     def pop(self, index: int = -1) -> object:
+        # check empty list
+        if self.length == 0:
+            raise IndexError("pop from empty list")
 
-        # current = self._head
-        # previous = None
-        # current_index = 0
+        # get index
+        index = self._normalize_index(index)
+
+        current = self._head
+        previous = None
+        current_index = 0
 
         # find position
-        # while current_index < index:
-            # previous = current
-            # current = current.next
-            # current_index += 1
+        while current_index < index:
+            previous = current
+            current = current.next
+            current_index += 1
+
+        # remove node
+        if previous is None:
+            self._head = current.next
+        else:
+            previous.next = current.next
+
+        self.length -= 1
+
+        return index
